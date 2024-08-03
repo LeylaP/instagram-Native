@@ -6,7 +6,7 @@ import HomeScreen from './screens/Home/index';
 import SearchScreen from './screens/Search';
 import ReelScreen from './screens/Reel';
 import ShopScreen from './screens/Shop';
-import ProfileScreen from './screens/Profile';
+import ProfileScreen from './screens/Home/Profile/Profile';
 import {Home,Heart,Messenger,Search,Shop,Reel, HomeField,ShopField,SearchField,ReelField} from './Icon';
 const Tab = createBottomTabNavigator();
 

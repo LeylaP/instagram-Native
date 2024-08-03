@@ -2,8 +2,13 @@ import {StyleSheet, Text, View, Image, TouchableOpacity} from 'react-native';
 import {Bookmark, Comment, Dots, Heart, Share} from '../../../../Icon';
 import React from 'react';
 import FitImage from './FitImage';
+import ReadMore from 'react-native-read-more-text';
+import dayjs from 'dayjs';
+import relativeTime from 'dayjs/plugin/relativeTime';
+
 
 export default function Post({post}) {
+    dayjs.extend(relativeTime);
   return (
     <View style={styles.post}>
       <View style={styles.header}>
@@ -19,7 +24,7 @@ export default function Post({post}) {
         <View style={styles.actions}>
           <View style={styles.leftActions}>
             <TouchableOpacity style={styles.action} activeOpacity={0.7}>
-              <Heart size={24}/>
+              <Heart size={24} />
             </TouchableOpacity>
             <TouchableOpacity style={styles.action} activeOpacity={0.7}>
               <Comment size={24} />
@@ -27,23 +32,55 @@ export default function Post({post}) {
             <TouchableOpacity style={styles.action} activeOpacity={0.7}>
               <Share size={24} />
             </TouchableOpacity>
-            
           </View>
-          <TouchableOpacity style={styles.action} activeOpacity={0.7}>
+        
+            <TouchableOpacity style={styles.action} activeOpacity={0.7}>
               <Bookmark size={24} />
             </TouchableOpacity>
+          
         </View>
       </View>
+      <View style={styles.comment}>
+        <Text style={{fontWeight:600}}>{post.likes} Likes </Text>
+        <ReadMore numberOfLines={2} >
+            <Text style={{fontWeight:600}}>{post.user.name} </Text>
+            <Text >{post.description}</Text>
+        </ReadMore>
+        {post?.comments > 0 && (
+            <TouchableOpacity activeOpacity={0.7}>
+                <Text style={{color:'#707070'}}>View all {post?.comments} comments</Text>
+            </TouchableOpacity>
+        )}
+      </View>
+      <View>
+        <Text style={styles.date}>{dayjs(post?.date).fromNow()}</Text>
+        <Text style={styles.translation}>See Translation</Text>
+
+      </View>
+
     </View>
   );
 }
 
 const styles = StyleSheet.create({
+
+    comment:{
+
+    },
+    translation:{
+        fontSize:13,
+        fontWeight:600,
+        marginTop:10,
+    },
+    date:{
+        fontSize:13,
+        opacity: 0.5,    },
+
   actions: {
-    flexDirection:'row',
-    justifyContent:'space-between',
-    alignItems:'center',
-    height:40,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    height: 40,
   },
   leftActions: {
     flexDirection: 'row',
@@ -62,6 +99,11 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'space-between',
     paddingHorizontal: 15,
+    paddingVertical:5,
+    borderColor:'#d9d9d9',
+    borderTopWidth:0.5,
+
+
   },
   avatar: {
     width: 30,
@@ -74,9 +116,9 @@ const styles = StyleSheet.create({
     fontWeight: '600',
   },
   content: {
-    paddingHorizontal:15,
+    paddingHorizontal: 15,
   },
-  action:{
-    marginRight:5,
-  }
+  action: {
+    marginRight: 5,
+  },
 });

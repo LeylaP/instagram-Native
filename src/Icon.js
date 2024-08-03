@@ -87,7 +87,17 @@ function Share({size}){
         <Image style={{width:size, height:size}} source={require('./../assets/share.png')}/>
     )
 };
+function Dropdown({size}){
+    return(
+        <Image style={{width:size, height:size}} source={require('./../assets/dropdown.png')}/>
+    )
+};
+function BurgerMenu({size}){
+    return(
+        <Image style={{width:size, height:size}} source={require('./../assets/burger.png')}/>
+    )
+};
 
 
 
-export{Logo,Plus,Home,Comment,Share,Profile,Bookmark,Search,Shop,Reel,HomeField,SearchField,Dots,ShopField,ReelField,Heart,Messenger};
+export{Logo,Plus,Home,Dropdown,BurgerMenu,Comment,Share,Profile,Bookmark,Search,Shop,Reel,HomeField,SearchField,Dots,ShopField,ReelField,Heart,Messenger};
