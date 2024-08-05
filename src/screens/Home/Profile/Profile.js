@@ -1,31 +1,35 @@
 import { FlatList, Image, ScrollView,Dimensions, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import React from 'react'
 
-import Header from './components/Header'
+
 import ProfileInfo from './components/ProfileInfo'
 import ProfileBio from './components/ProfileBio'
 import ProfileStory from './components/ProfileStory'
+import ProfileHeader from './components/Header'
 import posts from '../../../data/posts'
+import ProfilePosts from './components/ProfilePosts'
 
 export default function ProfileScreen() {
 
-  const screenWidth=Dimensions.get("window").width;
-
-  console.log(screenWidth);
-
-  const renderProps= ({item}) => {
-    <TouchableOpacity>
-      <Image source={{uri:item.image}} style={{width:50, height:50}}/>
-    </TouchableOpacity>
-  };
+  
 
   return (
     <ScrollView style={styles.container}>
       
-     <Header/>
+     <ProfileHeader/>
      <ProfileInfo/>
      <ProfileBio/>
      <ProfileStory/>
+     <ProfilePosts/>
+
+      {/* <FlatList 
+      keyExtractor={(item, index) => index.toString()}
+      numColumns={numColumns} 
+      data={posts} 
+      renderItem={renderProps} 
+      contentContainerStyle={styles.photoGrid}
+      />
+      */}
      
     </ScrollView>
   )
@@ -37,5 +41,6 @@ const styles = StyleSheet.create({
     flex:1,
 
   },
+  photoGrid:{},
 
 })
